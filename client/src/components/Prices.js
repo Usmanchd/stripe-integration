@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
 import { Link } from 'react-router-dom';
 
+
 import Header from './Header';
 import { handleToken } from '../actions';
 
@@ -54,6 +55,9 @@ const plan3 = {
 };
 
 class Prices extends React.Component {
+  if (isAuthenticated) {
+    return <Redirect to="/login" />;
+  }
   cardContent = ({ title, price, description1, description2, bestvalue }) => {
     return (
       <div className="ui centered card" onClick={() => console.log('clicked')}>
@@ -150,7 +154,8 @@ class Prices extends React.Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  return { auth };
+  return
+   { auth };
 };
 
 export default connect(mapStateToProps, { handleToken })(Prices);

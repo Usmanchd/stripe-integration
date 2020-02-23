@@ -1,0 +1,116 @@
+#planspricing{
+    display: flex;
+    width: 100%;
+    margin: 2rem auto 0 auto;
+    max-width: 900px;
+}
+
+.plan-box{
+    flex: 1;
+    border: 1px solid #111;
+    border-radius: 5px;
+    margin-right: 1rem;
+}
+
+.plan-header{
+    padding: 2rem;
+    background: #111;
+    text-align: center;
+    position: relative
+}
+
+.plan-header h4{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ccc;
+    display: block;
+}
+
+.plan-header h5{
+    font-size: 1.75em;
+}
+
+.plan-header h6{
+    font-size: 0.9em;
+    opacity: 0.7
+}
+
+
+
+.plan-body{
+    padding: 1rem 2rem;
+}
+
+.plan-body ul{
+    list-style: none;
+    margin: 0;
+}
+
+.plan-body li{
+    padding: 6px 0;
+    display: block;
+    border-bottom: 1px solid rgba(255,255,255,0.0725);
+}
+
+.plan-footer{
+    background: #101010;
+    padding: 1rem 0;
+    display: block;
+}
+
+.plan-header a{
+    background: #815FFF;
+    display: block;
+    margin: 0 2rem;
+    color: #fff;
+    text-align: center;
+    line-height: 36px;
+    font-weight: 600;
+    border-radius: 3px;	
+    margin-top: 1rem;	
+    opacity: 0.9		
+    
+}
+
+.plan-header a:hover{opacity: 1}
+
+.plan-footer a{
+    border: 1px solid #815FFF;
+    display: block;
+    margin: 0 2rem;
+    color: #fff;
+    text-align: center;
+    line-height: 36px;
+    font-weight: 600;
+    border-radius: 3px;				
+}
+
+.plan-footer a:hover{
+    background: #815FFF;
+}
+
+.deco-div{
+    background: #815FFF;
+    width: 18px;
+    height: 2px;
+    display: block;
+    margin: 0.5rem auto;
+}
+
+.label{			
+    background: #815fff;
+    border-radius: 0 0 0 2px;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 2px 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@media screen and (max-width: 768px) {
+    #planspricing{display: block !important}
+    .plan-box{display: block; margin: 1rem;}
+    .plan-body{display: none}
+    .plan-footer{display: none;}
+}
