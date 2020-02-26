@@ -7,7 +7,7 @@ const keys = require('./config/keys.js');
 
 require('./models/User');
 require('./services/passport');
-mongoose.connect(keys.mongoURI, {
+mongoose.connect(keys.mongoURI || 'mongodb://127.0.0.1/payment', {
   useNewUrlParser: true
 });
 

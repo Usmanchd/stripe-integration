@@ -13,6 +13,7 @@ import SignupForm from "./logging/SignupForm";
 
 class App extends React.Component {
   componentDidMount() {
+    console.log('fetch')
     this.props.fetchUser();
   }
 

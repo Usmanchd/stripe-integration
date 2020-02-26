@@ -10,7 +10,9 @@ const userSchema = new Schema({
   password: { type: String, minlength: 5, maxlength: 1024 },
   balance: { type: Number, default: 0 },
   accepted: { type: Boolean, default: false },
-  stripeId: { type: String, default: null }
+  stripeId: { type: String, default: null },
+  subscriptionId: { type: String, default: null },
+  subscription:{type:String, default: null}
 });
 
 function validateUser(user) {

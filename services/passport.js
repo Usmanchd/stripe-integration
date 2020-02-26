@@ -25,64 +25,64 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: keys.googleClientID,
-      clientSecret: keys.googleClientSecret,
-      callbackURL: '/auth/google/callback',
-      proxy: true
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ googleId: profile.id });
-      console.log(profile);
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: keys.googleClientID,
+//       clientSecret: keys.googleClientSecret,
+//       callbackURL: '/auth/google/callback',
+//       proxy: true
+//     },
+//     async (accessToken, refreshToken, profile, done) => {
+//       const existingUser = await User.findOne({ googleId: profile.id });
+//       console.log(profile);
 
-      if (existingUser) {
-        if (existingUser.accepted) {
-          return done(null, existingUser);
-        } else {
-          return done(null, null);
-        }
-      }
+//       if (existingUser) {
+//         if (existingUser.accepted) {
+//           return done(null, existingUser);
+//         } else {
+//           return done(null, null);
+//         }
+//       }
 
-      const user = await new User({
-        googleId: profile.id,
-        name: profile.displayName,
-        email: profile.emails[0].value
-      }).save();
-      return done(null, null);
-    }
-  )
-);
+//       const user = await new User({
+//         googleId: profile.id,
+//         name: profile.displayName,
+//         email: profile.emails[0].value
+//       }).save();
+//       return done(null, null);
+//     }
+//   )
+// );
 
-passport.use(
-  new FacebookStrategy(
-    {
-      clientID: keys.facebookClientID,
-      clientSecret: keys.facebookClientSecret,
-      callbackURL: '/auth/facebook/callback',
-      proxy: true
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ facebookId: profile.id });
-      console.log('login by facebook');
-      console.log(profile);
-      if (existingUser) {
-        if (existingUser.accepted) {
-          return done(null, existingUser);
-        } else {
-          return done(null, null);
-        }
-      } else {
-        const user = await new User({
-          facebookId: profile.id,
-          name: profile.displayName
-        }).save();
-        return done(null, null);
-      }
-    }
-  )
-);
+// passport.use(
+//   new FacebookStrategy(
+//     {
+//       clientID: keys.facebookClientID,
+//       clientSecret: keys.facebookClientSecret,
+//       callbackURL: '/auth/facebook/callback',
+//       proxy: true
+//     },
+//     async (accessToken, refreshToken, profile, done) => {
+//       const existingUser = await User.findOne({ facebookId: profile.id });
+//       console.log('login by facebook');
+//       console.log(profile);
+//       if (existingUser) {
+//         if (existingUser.accepted) {
+//           return done(null, existingUser);
+//         } else {
+//           return done(null, null);
+//         }
+//       } else {
+//         const user = await new User({
+//           facebookId: profile.id,
+//           name: profile.displayName
+//         }).save();
+//         return done(null, null);
+//       }
+//     }
+//   )
+// );
 
 passport.use(
   'register',

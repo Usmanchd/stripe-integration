@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
 import { Link } from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
 
 import Header from './Header';
 import { handleToken } from '../actions';
@@ -55,9 +55,6 @@ const plan3 = {
 };
 
 class Prices extends React.Component {
-  if (isAuthenticated) {
-    return <Redirect to="/login" />;
-  }
   cardContent = ({ title, price, description1, description2, bestvalue }) => {
     return (
       <div className="ui centered card" onClick={() => console.log('clicked')}>
@@ -87,14 +84,20 @@ class Prices extends React.Component {
   };
 
   render() {
-    console.log(this.props.auth, 'auth');
+    if (!this.props.auth) {
+      return <Redirect to="/login" />;
+    }
+
     const StripePay = plan => (
       <StripeCheckout
         name="Company name"
         description={plan.stripe.description}
         amount={plan.stripe.amount}
-        token={token => this.props.handleToken(token)}
-        stripeKey={process.env.REACT_APP_STRIPE_KEY}
+        token={token => this.props.handleToken({ token, plan })}
+        stripeKey={
+          process.env.REACT_APP_STRIPE_KEY ||
+          'pk_test_Y6zEnwxiVJR4MWhUjmI3UgFl00DLiWWOaT'
+        }
       >
         {this.cardContent(plan)}
       </StripeCheckout>
@@ -153,9 +156,8 @@ class Prices extends React.Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return
-   { auth };
-};
+const mapStateToProps = ({ auth }) => ({
+  auth
+});
 
 export default connect(mapStateToProps, { handleToken })(Prices);
